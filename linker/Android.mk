@@ -84,3 +84,10 @@ $(linked_module): $(TARGET_CRTBEGIN_STATIC_O) $(all_objects) $(all_libraries) $(
 #
 # end of BUILD_EXECUTABLE hack
 #
+
+# Ugly hack to make sure we get installed even in TINY
+ifeq ($(strip $(BUILD_TINY_ANDROID)),true)
+systemtarball: $(PRODUCT_OUT)/system/bin/linker
+
+droidcore: $(PRODUCT_OUT)/system/bin/linker
+endif
